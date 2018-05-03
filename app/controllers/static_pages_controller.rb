@@ -3,5 +3,6 @@ class StaticPagesController < ApplicationController
   end
 
   def catalog
+    @books = Book.all
   end
 end

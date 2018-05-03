@@ -13,6 +13,7 @@ gem 'jquery-rails'
 gem 'devise'
 gem 'carrierwave'
 gem 'mini_magick'
+gem 'faker', :git => 'https://github.com/stympy/faker.git', :branch => 'master'
 # Use sqlite3 as the database for Active Record
 
 # Use Puma as the app server
