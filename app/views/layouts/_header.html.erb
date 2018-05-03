@@ -16,6 +16,16 @@
                 <li><%= link_to "Главная",root_url%></li>
                 <li><%= link_to "Каталог",catalog_url%></li>
             </ul>
+            <ul class="nav navbar-nav navbar-right">
+            <% if !user_signed_in?%>
+                <li><%= link_to 'Войти', new_user_session_path%></li>
+                <li><%= link_to 'Зарегистрироваться', new_user_registration_path%></li>
+                
+            <%else%>
+                <li><%= link_to 'Профиль', user_path(current_user) %></li>
+                <li><%= link_to 'Выйти', destroy_user_session_path, :method => :delete%></li>
+            <%end%>
+                
         </div>
     </div>
 </nav>
