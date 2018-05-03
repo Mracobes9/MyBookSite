@@ -19,5 +19,4 @@ end
     name = Faker::Book.title
     book_cover=File.open(images.sample)
     authors.sample.books.create(name: name, book_cover: book_cover)
-
 end

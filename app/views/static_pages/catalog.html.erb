@@ -3,3 +3,7 @@
 <p class='lead text-center'>
     Здесь вы найдете книги на свой вкус.
 </p>
+<%= will_paginate @books%>
+<div id="catalog">
+    <%= render @books%>
+</div>

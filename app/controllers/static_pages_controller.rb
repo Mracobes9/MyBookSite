@@ -3,6 +3,6 @@ class StaticPagesController < ApplicationController
   end
 
   def catalog
-    @books = Book.all
+    @books = Book.paginate(page: params[:page], per_page: 20)
   end
 end
