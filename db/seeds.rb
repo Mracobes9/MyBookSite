@@ -18,5 +18,6 @@ end
     images = Dir['/home/mracobes9/Ruby/MyBookSite/public/images/*'].select {|f| !File.directory? f}
     name = Faker::Book.title
     book_cover=File.open(images.sample)
-    authors.sample.books.create(name: name, book_cover: book_cover)
+    description = Faker::Lorem.paragraph(5)
+    authors.sample.books.create(name: name, book_cover: book_cover, description: description)
 end

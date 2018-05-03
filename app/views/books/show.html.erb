@@ -1,0 +1,20 @@
+<% provide(:title,"#{@book.author.second_name} #{@book.author.name[0]}. #{@book.author.middle_name[0]}. - #{@book.name}")%>
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-md-4">
+            <%= image_tag  @book.book_cover.url%>
+        </div>
+        <div class="col-md-8">
+            <h2 class="h2">Название: <%= @book.name%></h2>
+            <h2 class="h2">Автор: <%= "#{@book.author.second_name} #{@book.author.name} #{@book.author.middle_name}"%></h2>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-2"></div>
+        <div class="col-md-8">
+            <h2 class="h2 text-center">Описание</h2>
+            <p class="text-justify"> <%= @book.description%></p>
+        </div>
+        <div class="col-md-2"></div>
+    </div>
+</div>
