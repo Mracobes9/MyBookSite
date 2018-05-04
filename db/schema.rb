@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180504005542) do
+ActiveRecord::Schema.define(version: 20180504065738) do
 
   create_table "authors", force: :cascade do |t|
     t.string "name", limit: 20, null: false
@@ -62,6 +62,7 @@ ActiveRecord::Schema.define(version: 20180504005542) do
     t.string "name", limit: 20, default: "", null: false
     t.string "second_name", limit: 20, default: "", null: false
     t.string "middle_name", limit: 20, default: "", null: false
+    t.string "avatar"
     t.index ["confirmation_token"], name: "index_users_on_confirmation_token", unique: true
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
