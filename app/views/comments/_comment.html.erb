@@ -5,6 +5,10 @@
     <div class="col-md-4" id="comment_body">
         <p class="author"><%= "#{comment.user.second_name} #{comment.user.name}"%></p>
         <p class="text"><%= comment.text%></p>
+        <%if user_signed_in? && comment.user.id == current_user.id%>
+            <%= link_to 'Изменить', edit_comment_url(comment)%>
+            <%= link_to 'Удалить',comment_path(comment), method: :delete%>
+        <%end%>
     </div>
     <div class="col-md-4">
     
