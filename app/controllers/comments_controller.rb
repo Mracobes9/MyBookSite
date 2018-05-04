@@ -1,10 +1,11 @@
 class CommentsController < ApplicationController
     def create
         user_id = current_user.id
-        book_id = params[:format]
+        book_id = params[:id]
         text = params[:text]
         is_moderate = false
         comment = Comment.new(user_id: user_id, book_id: book_id, text: text, is_moderate: is_moderate)
+        byebug
         if comment.save
             flash[:notice] = "Комментарий создан"
         else
