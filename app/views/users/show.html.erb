@@ -9,16 +9,19 @@
             <h2> Отчество: <%= @user.middle_name%></p>
         </div>
     </div>
+    <% if user_signed_in? && current_user.id == @user.id%>
     <div class="row text-center">
         <h2>Любимые книги</h2>
-        <div class="col-md-3">
+        <%= will_paginate @favorite_books%>
+        <div class="col-md-2">
 
         </div>
-        <div class="col-md-6" id="favourite_book_field">
-            
+        <div class="col-md-8" id="favourite_book_field">
+            <%=render @favorite_books%>
         </div>
-        <div class="col-md-3">
+        <div class="col-md-2">
 
         </div>
-    </div>
+    </div>  
+    <%end%> 
 </div>

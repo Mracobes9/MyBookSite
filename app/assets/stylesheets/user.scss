@@ -15,4 +15,10 @@
 #favourite_book_field
 {
     background-color: #ffffff;
+     display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    align-items: center;
+    flex-wrap: wrap;
+
 }
