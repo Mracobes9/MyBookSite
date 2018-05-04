@@ -1,4 +1,7 @@
 Rails.application.routes.draw do
+  get 'favorite_books/create'
+  get 'favorite_books/destroy'
+
   devise_for :users
   get 'catalog' => 'static_pages#catalog'
   root 'static_pages#home'

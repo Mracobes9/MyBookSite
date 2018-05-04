@@ -1,5 +1,10 @@
 <div class="book_item" id="book-<%=book.id%>"> 
     <div class="image_part"><%= image_tag book.book_cover.url%></div>
     <div class="text_path"><%=link_to "#{book.author.second_name} #{book.author.name[0]}. #{book.author.middle_name[0]}. - #{book.name}", book_url(book.id)%></div>
-    
+    <% if current_page?(catalog_url) && user_signed_in? && !FavoriteBook.where(user_id: current_user.id, book_id: book.id).exists?%>
+        <%=link_to "Добавить",  favorite_books_create_url(book.id)%>
+    <%end%>
+    <% if FavoriteBook.where(user_id: current_user.id, book_id: book.id).exists?%>
+        <%=link_to "Удалить",  favorite_books_destroy_url(book.id)%>
+    <%end%>
 </div>
