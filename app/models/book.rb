@@ -6,4 +6,7 @@ class Book < ApplicationRecord
 
     has_many :comments
     has_many :commentators, through: :comments, foreign_key: "book_id", source: :user
+
+    has_many :favorite_books
+    has_many :fans, through: :favorite_books, source: :user
 end

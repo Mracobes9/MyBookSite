@@ -10,4 +10,7 @@ class User < ApplicationRecord
 
   has_many :comments
   has_many :commented_books, through: :comments, foreign_key:"user_id", source: :book
+
+  has_many :favorite_books
+  has_many :liked_books, through: :favorite_books, source: :book
 end

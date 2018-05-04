@@ -33,11 +33,18 @@ end
     User.create(name: name, second_name: second_name, middle_name: middle_name, email: email, password: "080411", password_confirmation:"080411", avatar: avatar)
 end
 
-10.times do |i|
+100.times do |i|
     text = Faker::Lorem.sentence
     user_id = User.all.sample.id
     book_id = Book.all.sample.id
     is_moderate = true
 
     Comment.create(text: text, user_id: user_id, book_id:book_id, is_moderate:is_moderate)
+end
+
+100.times do |i|
+    user_id = User.all.sample.id
+    book_id = Book.all.sample.id
+
+    FavoriteBook.create(user_id: user_id, book_id: book_id)
 end
