@@ -6,4 +6,7 @@ class User < ApplicationRecord
   validates :name, length: {maximum: 20}, presence: true
   validates :second_name, length: {maximum: 20}, presence: true
   validates :middle_name, length: {maximum: 20}, presence: true
+
+  has_many :comments
+  has_many :commented_books, through: :comments, foreign_key:"user_id", source: :book
 end
