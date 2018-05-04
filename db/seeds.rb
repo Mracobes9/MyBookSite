@@ -23,12 +23,14 @@ end
 end
 
 30.times do |i|
+    images = Dir['public/avatars/*'].select {|f| !File.directory? f}
     name = Faker::Name.name_with_middle.split(' ')[0]
     second_name = Faker::Name.name_with_middle.split(' ')[1]
     middle_name = Faker::Name.name_with_middle.split(' ')[2]
     email = Faker::Internet.email
+    avatar = File.open(images.sample)
 
-    User.create(name: name, second_name: second_name, middle_name: middle_name, email: email, password: "080411", password_confirmation:"080411")
+    User.create(name: name, second_name: second_name, middle_name: middle_name, email: email, password: "080411", password_confirmation:"080411", avatar: avatar)
 end
 
 10.times do |i|

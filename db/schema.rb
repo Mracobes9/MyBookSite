@@ -62,7 +62,7 @@ ActiveRecord::Schema.define(version: 20180504065738) do
     t.string "name", limit: 20, default: "", null: false
     t.string "second_name", limit: 20, default: "", null: false
     t.string "middle_name", limit: 20, default: "", null: false
-    t.string "avatar"
+    t.string "avatar", default: "", null: false
     t.index ["confirmation_token"], name: "index_users_on_confirmation_token", unique: true
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
