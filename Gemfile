@@ -14,6 +14,7 @@ gem 'devise'
 gem 'carrierwave'
 gem 'mini_magick'
 gem 'will_paginate'
+gem 'lazybox'
 gem 'faker', :git => 'https://github.com/stympy/faker.git', :branch => 'master'
 # Use sqlite3 as the database for Active Record
 

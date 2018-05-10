@@ -5,7 +5,6 @@ class CommentsController < ApplicationController
         text = params[:text]
         is_moderate = false
         comment = Comment.new(user_id: user_id, book_id: book_id, text: text, is_moderate: is_moderate)
-        byebug
         if comment.save
             flash[:notice] = "Комментарий создан"
         else
@@ -18,12 +17,17 @@ class CommentsController < ApplicationController
     end
     def update
         comment = Comment.find(params[:id])
-        if comment.update_attributes(text: params[:text], is_moderate: params[:is_moderate])
+        params[:is_moderate] = false if params[:is_moderate].nil?
+        is_mod = params[:is_moderate]
+        if comment.update_attributes(text: params[:text], is_moderate: false)
             flash[:notice] = "Комментарий сохранен"
         else
             flash[:alert] = "Произошла ошибка"
+            render action: :edit 
         end
+        
         redirect_back fallback_location: root_url
+         
     end
     def destroy
         if Comment.find(params[:id]).destroy
@@ -35,6 +39,6 @@ class CommentsController < ApplicationController
     end
 
     def index
-        @comments = current_user.comments unless current_user.nil?
+        @comments = current_user.comments.paginate(page: params[:page], per_page: 10)
     end
 end
