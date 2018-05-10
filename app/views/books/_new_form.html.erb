@@ -1,0 +1,21 @@
+<%= form_for @book,:html => {:multipart => true} do |f|%>
+    <div class="form-group">
+        <%= f.label :name, "Название"%>
+        <%= f.text_field :name %>
+    </div>
+
+    <div class="form-group">
+        <%= f.label :description, "Описание"%>
+        <%= f.text_area :description, size: "60x12"%>
+    </div>
+
+    <div class="form-group">
+        <%= f.label :author_id, "Автор"%>
+        <%= f.select :author_id, options_for_select(@authors)%>
+    </div>
+    <div class="form-group">
+        <%= f.label :book_cover, "Обложка"%>
+        <%= f.file_field :book_cover %>
+    </div>
+    <%= f.submit "Отправить" %>
+<%end%>
