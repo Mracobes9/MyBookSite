@@ -33,4 +33,8 @@ class CommentsController < ApplicationController
         end
         redirect_back fallback_location: root_url
     end
+
+    def index
+        @comments = current_user.comments unless current_user.nil?
+    end
 end
