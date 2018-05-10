@@ -29,8 +29,14 @@ end
     middle_name = Faker::Name.name_with_middle.split(' ')[2]
     email = Faker::Internet.email
     avatar = File.open(images.sample)
+    admin=false
 
-    user=User.new(name: name, second_name: second_name, middle_name: middle_name, email: email, password: "080411", password_confirmation:"080411", avatar: avatar)
+    if i==1
+        email = "kac.kurilov@yandex.ru"
+        admin =true
+    end
+
+    user=User.new(name: name, second_name: second_name, middle_name: middle_name, email: email, password: "080411", password_confirmation:"080411", avatar: avatar,admin: admin)
     user.skip_confirmation!
     user.save
 end

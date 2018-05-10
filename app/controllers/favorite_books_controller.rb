@@ -1,4 +1,5 @@
 class FavoriteBooksController < ApplicationController
+  before_action :correct_user, only:[:create, :destroy]
   def create
     user_id = current_user.id
     book_id = params[:format]
@@ -23,5 +24,11 @@ class FavoriteBooksController < ApplicationController
       flash[:alert] = "Произошла ошибка"
     end
     redirect_back fallback_location: root_url
+  end
+
+  private
+  
+  def correct_user
+    redirect_to root_url if current_user.nil?
   end
 end
