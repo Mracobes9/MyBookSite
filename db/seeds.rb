@@ -30,7 +30,9 @@ end
     email = Faker::Internet.email
     avatar = File.open(images.sample)
 
-    User.create(name: name, second_name: second_name, middle_name: middle_name, email: email, password: "080411", password_confirmation:"080411", avatar: avatar)
+    user=User.new(name: name, second_name: second_name, middle_name: middle_name, email: email, password: "080411", password_confirmation:"080411", avatar: avatar)
+    user.skip_confirmation!
+    user.save
 end
 
 100.times do |i|

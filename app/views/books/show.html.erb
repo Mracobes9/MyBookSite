@@ -20,5 +20,6 @@
 </div>
 <div class="container-fluid">
     <h2 class="text-center">Отзывы</h2>
-    <%= render @book.comments%>
+    <%= render @book.comments.select {|c| c.is_moderate == true}%>
+    <%= render 'comments/comment_form' if !current_user.nil?%>
 </div>

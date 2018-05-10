@@ -4,7 +4,7 @@
     <% if current_page?(catalog_url) && user_signed_in? && !FavoriteBook.where(user_id: current_user.id, book_id: book.id).exists?%>
         <%=link_to "Добавить",  favorite_books_create_url(book.id)%>
     <%end%>
-    <% if FavoriteBook.where(user_id: current_user.id, book_id: book.id).exists?%>
+    <% if !current_user.nil? && FavoriteBook.where(user_id: current_user.id, book_id: book.id).exists?%>
         <%=link_to "Удалить",  favorite_books_destroy_url(book.id)%>
     <%end%>
 </div>

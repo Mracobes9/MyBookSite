@@ -1,0 +1,11 @@
+<%provide(:title,"Мои отзывы")%>
+<div class="container-fluid">
+    <div class="row">
+        <h1 class="h1 text-center">Мои отзывы</h1>
+    </div>
+    <%= will_paginate @comments %>
+    <div class="row">
+        <%=render @comments%>
+    </div>
+</div>
+
