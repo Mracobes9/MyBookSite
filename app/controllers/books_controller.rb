@@ -1,4 +1,6 @@
 class BooksController < ApplicationController
+    before_action :correct_user, only:[:show,:new, :create]
+    before_action :admin_check, only:[:new, :create]
     def show
         @book = Book.find(params[:id])
         @comment = Comment.new
@@ -18,5 +20,11 @@ class BooksController < ApplicationController
 
     def book_params
         params.require(:book).permit(:name,:author_id, :book_cover, :description)
+    end
+    def correct_user
+        redirect_to root_url if current_user.nil?
+    end
+    def admin_check
+        redirect_to root_url if current_user.admin
     end
 end

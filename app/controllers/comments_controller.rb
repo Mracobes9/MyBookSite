@@ -1,9 +1,10 @@
 class CommentsController < ApplicationController
+    before_action :correct_user, only: [:create, :edit,:update,:destroy,:index]
     def create
         user_id = current_user.id
         book_id = params[:id]
         text = params[:text]
-        is_moderate = false
+        current_user.admin ? is_moderate = params[:comment][:is_moderate] : is_moderate=false
         comment = Comment.new(user_id: user_id, book_id: book_id, text: text, is_moderate: is_moderate)
         if comment.save
             flash[:notice] = "Комментарий создан"
@@ -39,6 +40,18 @@ class CommentsController < ApplicationController
     end
 
     def index
-        @comments = current_user.comments.paginate(page: params[:page], per_page: 10)
+        if current_user.admin
+            @comments = Comment.all.paginate(page:params[:page], per_page:10)
+        else
+            @comments = current_user.comments.paginate(page: params[:page], per_page: 10)
+        end
+        
+    end
+
+    private
+
+    def correct_user
+        redirect_to root_url if current_user.nil?
+        #redirect_to root_url if current_user.id != Comment.find(params[:id]).user_id && !current_user.admin?
     end
 end
