@@ -15,12 +15,18 @@ class CommentsController < ApplicationController
     end
     def edit
         @comment = Comment.find(params[:id])
+        redirect_to root_url unless current_user.comments.include?(@comment)|| current_user.admin?
     end
     def update
         comment = Comment.find(params[:id])
-        params[:is_moderate] = false if params[:is_moderate].nil?
-        is_mod = params[:is_moderate]
-        if comment.update_attributes(text: params[:text], is_moderate: false)
+        redirect_to root_url unless current_user.comments.include?(comment) || current_user.admin?
+        
+        if params[:comment].nil?
+            is_mod = false
+        else 
+            is_mod = params[:comment][:is_moderate]
+        end
+        if comment.update_attributes(text: params[:text], is_moderate: is_mod)
             flash[:notice] = "Комментарий сохранен"
         else
             flash[:alert] = "Произошла ошибка"
@@ -31,6 +37,7 @@ class CommentsController < ApplicationController
          
     end
     def destroy
+         redirect_to root_url unless current_user.comments.include?(Comment.find(params[:id]))|| current_user.admin?
         if Comment.find(params[:id]).destroy
              flash[:notice] = "Комментарий удален"
         else

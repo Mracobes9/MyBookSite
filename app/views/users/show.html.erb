@@ -2,12 +2,15 @@
 <div class="container-fluid">
     <div class="row">
         <div class="col-md-4"> 
-            <%= image_tag @user.avatar.thumb.url, id:"avatar_field"%>
+            
+            <%= image_tag @user.avatar.thumb.url, id:"avatar_field" %>
+            
         </div>
         <div class="col-md-6" id="user_info">
             <h2> Фамилия: <%= @user.second_name%></p>
             <h2> Имя: <%= @user.name%></p>
             <h2> Отчество: <%= @user.middle_name%></p>
+            <%= link_to "Изменить", edit_user_registration_url(@user)%>
         </div>
     </div>
     <% if user_signed_in? && current_user.id == @user.id%>
