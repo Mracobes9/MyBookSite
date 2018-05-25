@@ -26,12 +26,12 @@ ActiveRecord::Schema.define(version: 20180510180652) do
     t.string "book_cover", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.text "description", limit: 200, default: "", null: false
+    t.text "description", limit: 200
     t.index ["author_id"], name: "index_books_on_author_id"
   end
 
   create_table "comments", force: :cascade do |t|
-    t.text "text", limit: 100, default: "", null: false
+    t.text "text", limit: 100
     t.integer "user_id", null: false
     t.integer "book_id", null: false
     t.boolean "is_moderate", default: false, null: false

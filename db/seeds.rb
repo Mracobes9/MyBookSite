@@ -15,7 +15,7 @@ end
 
 99.times do |i|
     authors = Author.all
-    images = Dir['/home/mracobes9/Ruby/MyBookSite/public/images/*'].select {|f| !File.directory? f}
+    images = Dir['public/images/*'].select {|f| !File.directory? f}
     name = Faker::Book.title
     book_cover=File.open(images.sample)
     description = Faker::Lorem.paragraph(5)

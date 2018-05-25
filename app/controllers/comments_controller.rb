@@ -1,5 +1,6 @@
 class CommentsController < ApplicationController
     before_action :correct_user, only: [:create, :edit,:update,:destroy,:index]
+    before_action :admin_check, only: [:create]
     def create
         user_id = current_user.id
         book_id = params[:id]
@@ -20,21 +21,21 @@ class CommentsController < ApplicationController
     def update
         comment = Comment.find(params[:id])
         redirect_to root_url unless current_user.comments.include?(comment) || current_user.admin?
-        
+
         if params[:comment].nil?
             is_mod = false
-        else 
+        else
             is_mod = params[:comment][:is_moderate]
         end
         if comment.update_attributes(text: params[:text], is_moderate: is_mod)
             flash[:notice] = "Комментарий сохранен"
         else
             flash[:alert] = "Произошла ошибка"
-            render action: :edit 
+            render action: :edit
         end
-        
+
         redirect_back fallback_location: root_url
-         
+
     end
     def destroy
          redirect_to root_url unless current_user.comments.include?(Comment.find(params[:id]))|| current_user.admin?
@@ -52,7 +53,7 @@ class CommentsController < ApplicationController
         else
             @comments = current_user.comments.paginate(page: params[:page], per_page: 10)
         end
-        
+
     end
 
     private
@@ -60,5 +61,8 @@ class CommentsController < ApplicationController
     def correct_user
         redirect_to root_url if current_user.nil?
         #redirect_to root_url if current_user.id != Comment.find(params[:id]).user_id && !current_user.admin?
+    end
+    def admin_check
+      redirect_to root_url if current_user.admin?      
     end
 end
