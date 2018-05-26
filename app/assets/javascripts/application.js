@@ -15,4 +15,3 @@
 //= require turbolinks
 //= require lazybox
 //= require_tree .
-

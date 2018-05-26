@@ -4,8 +4,13 @@ module BooksHelper
   end
   def valid_book_for_add?(book)
     current_page?(catalog_url) && user_signed_in? && !FavoriteBook.where(user_id: current_user.id, book_id: book.id).exists?
+
   end
   def valid_book_for_remove?(book)
     !current_user.nil? && FavoriteBook.where(user_id: current_user.id, book_id: book.id).exists?
+
+  end
+  def getFullNameBook(book)
+    "#{book.author.second_name} #{book.author.name[0]}. #{book.author.middle_name[0]}. - #{book.name}"
   end
 end

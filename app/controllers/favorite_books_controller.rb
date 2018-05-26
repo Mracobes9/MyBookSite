@@ -1,34 +1,17 @@
 class FavoriteBooksController < ApplicationController
-  before_action :correct_user, only:[:create, :destroy]
+  before_action :authenticate_user!, only:[:create, :destroy]
   def create
-    user_id = current_user.id
-    book_id = params[:format]
+    book = current_user.favorite_books.new(book_id:params[:format])
 
-    book=FavoriteBook.new(user_id: user_id, book_id: book_id)
-    if book.save
-      flash[:notice] = "Книга добавлена"
-    else
-      flash[:alert] = "Произошла ошибка"
-    end
+    flash[:notice] = "Книга добавлена" if book.save
     redirect_to catalog_url
   end
 
   def destroy
-    user_id = current_user.id
-    book_id = params[:format]
-
-    book=FavoriteBook.where(user_id: user_id, book_id: book_id).first
-    if book.nil? || book.destroy
-      flash[:notice] = "Книга удалена"
-    else
-      flash[:alert] = "Произошла ошибка"
-    end
+    #byebug
+    book = current_user.favorite_books.find_by(book_id: params[:format])
+    flash[:notice] = "Книга удалена" if book.destroy
     redirect_back fallback_location: root_url
   end
 
-  private
-  
-  def correct_user
-    redirect_to root_url if current_user.nil?
-  end
 end

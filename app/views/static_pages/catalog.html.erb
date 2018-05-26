@@ -2,7 +2,7 @@
 <h1 class='h1 text-center'>Каталог</h1>
 <p class='lead text-center'>
     Здесь вы найдете книги на свой вкус.<br>
-    <%= link_to "Добавить", new_book_url, remote: true if correct_user?%>
+    <%= link_to "Добавить", new_book_url, remote: true if correct_admin_user?%>
 </p>
 <%= will_paginate @books%>
 <div id="catalog">

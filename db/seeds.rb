@@ -15,7 +15,9 @@ end
 
 99.times do |i|
     authors = Author.all
+    byebug
     images = Dir['public/images/*'].select {|f| !File.directory? f}
+
     name = Faker::Book.title
     book_cover=File.open(images.sample)
     description = Faker::Lorem.paragraph(5)

@@ -31,3 +31,10 @@
 
 en:
   hello: "Hello world"
+  flash_messages:
+    controller_name:
+      action_name:
+        success: "It worked!"
+        info: "There's something you need to know..."
+        warning: "You should watch out now."
+        error: "Oh no! Something went wrong."

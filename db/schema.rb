@@ -12,6 +12,9 @@
 
 ActiveRecord::Schema.define(version: 20180510180652) do
 
+  # These are extensions that must be enabled in order to support this database
+  enable_extension "plpgsql"
+
   create_table "authors", force: :cascade do |t|
     t.string "name", limit: 20, null: false
     t.string "second_name", limit: 20, null: false
@@ -26,12 +29,12 @@ ActiveRecord::Schema.define(version: 20180510180652) do
     t.string "book_cover", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.text "description", limit: 200
+    t.text "description"
     t.index ["author_id"], name: "index_books_on_author_id"
   end
 
   create_table "comments", force: :cascade do |t|
-    t.text "text", limit: 100
+    t.text "text"
     t.integer "user_id", null: false
     t.integer "book_id", null: false
     t.boolean "is_moderate", default: false, null: false

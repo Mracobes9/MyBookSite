@@ -1,6 +1,6 @@
 <div class="book_item" id="book-<%=book.id%>">
     <div class="image_part"><%= image_tag book.book_cover.url%></div>
-    <div class="text_path"><%=link_to "#{book.author.second_name} #{book.author.name[0]}. #{book.author.middle_name[0]}. - #{book.name}", book_url(book.id)%></div>
+    <div class="text_path"><%=link_to getFullNameBook(book), book_url(book.id)%></div>
     <% if valid_book_for_add?(book) %>
         <%=link_to "Добавить",  favorite_books_create_url(book.id)%>
     <%end%>
